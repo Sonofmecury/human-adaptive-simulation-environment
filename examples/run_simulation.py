@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -14,6 +15,7 @@ from simulation.logger import SimulationLogger
 
 
 OUTPUT_PATH = Path(__file__).resolve().parents[1] / "outputs" / "performance_over_time.png"
+LOG_PATH = Path(__file__).resolve().parents[1] / "outputs" / "trial_logs.jsonl"
 
 
 def run_simulation(total_trials: int = 80, verbose: bool = True) -> PerformanceMetrics:
@@ -36,9 +38,31 @@ def run_simulation(total_trials: int = 80, verbose: bool = True) -> PerformanceM
         logger.decision(decision)
 
     save_plot(metrics, OUTPUT_PATH)
+    export_jsonl(metrics, LOG_PATH)
     if verbose:
         print(f"\nSaved plot to {OUTPUT_PATH}")
+        print(f"Saved trial log to {LOG_PATH}")
     return metrics
+
+
+def export_jsonl(metrics: PerformanceMetrics, output_path: Path) -> None:
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with output_path.open("w", encoding="utf-8") as file:
+        for record in metrics.records:
+            file.write(
+                json.dumps(
+                    {
+                        "trial": record.trial,
+                        "success": record.success,
+                        "error": record.error,
+                        "reaction_delay": record.reaction_delay,
+                        "difficulty": round(record.difficulty, 3),
+                        "pacing": round(record.pacing, 3),
+                        "challenge_level": record.challenge_level,
+                    }
+                )
+                + "\n"
+            )
 
 
 def save_plot(metrics: PerformanceMetrics, output_path: Path) -> None:

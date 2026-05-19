@@ -46,6 +46,12 @@ The simulation saves a plot to:
 outputs/performance_over_time.png
 ```
 
+It also writes trial-level logs to:
+
+```text
+outputs/trial_logs.jsonl
+```
+
 Preview:
 
 ![Performance over time](outputs/performance_over_time.png)
@@ -89,7 +95,6 @@ The rules are intentionally transparent rather than complex. That makes it easie
 ## Future Improvements
 
 - Add configurable adaptation rules through YAML
-- Export trial logs to CSV or JSONL for analysis
 - Add multiple user profiles with different skill and fatigue patterns
 - Compare rule-based adaptation against a learned policy
 - Add a Gymnasium-compatible wrapper for agent-based experiments
