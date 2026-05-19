@@ -1,6 +1,6 @@
 # Human-Adaptive Simulation Environment
 
-A lightweight Python simulation where a task environment adapts to a simulated human user's behavior. The project models success rate, error rate, reaction delay, and consistency, then adjusts difficulty, pacing, and challenge level at runtime.
+A Python simulation of a human-adaptive task environment that adjusts difficulty, pacing, and challenge level based on simulated user performance metrics.
 
 This is a research-oriented prototype for demonstrating human-adaptive simulation architecture. It does not use real human data; the user is simulated with a small probabilistic model so the adaptation loop can be run locally and inspected easily.
 
@@ -52,9 +52,8 @@ It also writes trial-level logs to:
 outputs/trial_logs.jsonl
 ```
 
-Preview:
-
-![Performance over time](outputs/performance_over_time.png)
+Output files are generated locally and are not tracked in git.
+After running, check the `outputs/` directory for plots and logs.
 
 ## Example Adaptation Logic
 

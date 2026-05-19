@@ -5,6 +5,8 @@ from simulation.metrics import PerformanceMetrics, TrialRecord
 from simulation.task_environment import TaskEnvironment, TaskState
 from simulation.user_model import SimulatedUser
 
+__version__ = "0.1.0"
+
 __all__ = [
     "AdaptiveController",
     "PerformanceMetrics",

@@ -11,3 +11,17 @@ build/
 .DS_Store
 *.log
 !outputs/.gitkeep
+
+# Generated simulation outputs
+outputs/*.png
+outputs/*.jsonl
+outputs/*.json
+outputs/*.csv
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/

@@ -1,2 +1,5 @@
-matplotlib>=3.8.0
-pytest>=8.0.0
+# Runtime dependencies (compatible-release pins reduce surprise breakage)
+matplotlib~=3.10.0
+
+# Dev/test dependencies (also listed in pyproject.toml optional-dependencies)
+pytest~=8.0.0
