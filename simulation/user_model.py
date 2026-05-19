@@ -36,12 +36,16 @@ class SimulatedUser:
         self.trials_seen += 1
         fatigue = min(0.25, self.trials_seen * self.fatigue_rate)
         noise = self.rng.uniform(-0.15, 0.15) * (1.0 - self.consistency)
-        success_probability = self._clamp(self.skill - difficulty * 0.55 - fatigue + noise, 0.05, 0.95)
+        success_probability = self._clamp(
+            self.skill - difficulty * 0.55 - fatigue + noise, 0.05, 0.95
+        )
         success = self.rng.random() < success_probability
 
         base_delay = 0.55 + difficulty * 0.75 + fatigue
         pacing_pressure = max(0.0, 1.0 - pacing) * 0.25
-        reaction_delay = max(0.2, base_delay + pacing_pressure + self.rng.uniform(-0.08, 0.08))
+        reaction_delay = max(
+            0.2, base_delay + pacing_pressure + self.rng.uniform(-0.08, 0.08)
+        )
         error_magnitude = 0.0 if success else self.rng.uniform(0.2, 1.0 + difficulty)
 
         return UserResponse(

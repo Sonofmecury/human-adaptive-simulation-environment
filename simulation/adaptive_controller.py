@@ -78,7 +78,10 @@ class AdaptiveController:
             environment.introduce_challenge()
             action = "introduce_challenge"
             reason = f"consistency={metrics.consistency:.2f}"
-        elif action != "slow_pacing" and metrics.average_reaction_delay < self.delay_threshold * 0.9:
+        elif (
+            action != "slow_pacing"
+            and metrics.average_reaction_delay < self.delay_threshold * 0.9
+        ):
             environment.restore_pacing()
 
         if action != "maintain":

@@ -10,11 +10,17 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import matplotlib.pyplot as plt
 
-from simulation import AdaptiveController, PerformanceMetrics, SimulatedUser, TaskEnvironment
+from simulation import (
+    AdaptiveController,
+    PerformanceMetrics,
+    SimulatedUser,
+    TaskEnvironment,
+)
 from simulation.logger import SimulationLogger
 
-
-OUTPUT_PATH = Path(__file__).resolve().parents[1] / "outputs" / "performance_over_time.png"
+OUTPUT_PATH = (
+    Path(__file__).resolve().parents[1] / "outputs" / "performance_over_time.png"
+)
 LOG_PATH = Path(__file__).resolve().parents[1] / "outputs" / "trial_logs.jsonl"
 
 
@@ -33,7 +39,11 @@ def run_simulation(total_trials: int = 80, verbose: bool = True) -> PerformanceM
             metrics=snapshot,
             environment=environment,
         )
-        if record.trial % 5 == 0 or decision is not None and decision.action != "maintain":
+        if (
+            record.trial % 5 == 0
+            or decision is not None
+            and decision.action != "maintain"
+        ):
             logger.trial(record, snapshot)
         logger.decision(decision)
 
